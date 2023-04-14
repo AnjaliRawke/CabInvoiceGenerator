@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 	public class CabInvoiceTest {
 		CabInvoice cabInvoice;
-
 		@BeforeEach
 		public void init() {
 			cabInvoice = new CabInvoice();
