@@ -20,4 +20,20 @@ public class RideRepository {
 		CabInvoice invoice = new CabInvoice();
 		return invoice.generateInvoice(rides);
 	}
+
+	public Invoice generateInvoice(int userNo, Ride[] rides,UserType usertype) {
+		CabInvoice cabInvoice = new CabInvoice();
+		if (usertype.NORMAL.equals(usertype)) {
+			int totalRides = rides.length;
+			double aggFare = cabInvoice.calculateFare(rides);
+			double avgFare = (aggFare / totalRides);
+			return new Invoice(totalRides, aggFare, avgFare, userNo);
+		} else if (usertype.PREMIUM.equals(usertype)) {
+			int totalRides = rides.length;
+			double aggFare = cabInvoice.calculateFarePremium(rides);
+			double avgFare = (aggFare / totalRides);
+			return new Invoice(totalRides, aggFare, avgFare, userNo);
+		}
+		return null;
+	}
 }

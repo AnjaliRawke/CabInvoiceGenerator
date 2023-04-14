@@ -65,4 +65,17 @@ import org.junit.jupiter.api.Test;
 			Assertions.assertEquals(expectedInvoice1, actualInvoice1);
 			Assertions.assertEquals(expectedInvoice2, actualInvoice2);
 		}
+
+		@Test
+		public void givenPremiumUserShouldReturnInvoice(){
+			Ride ride = new Ride(20,5);
+			Ride ride1 = new Ride(0.2,1);
+			Ride ride2 = new Ride(0.5,2);
+			Ride ride3 = new Ride(10,5);
+			Ride[] rides ={ride,ride1,ride2,ride3};
+			RideRepository riderRepository = new RideRepository();
+			Invoice expectedInvoice = new Invoice(4,510,510.0/4,1122);
+			Invoice invoice=riderRepository.generateInvoice(1122,rides,UserType.PREMIUM);
+			Assertions.assertEquals(expectedInvoice,invoice);
+		}
 	}
