@@ -61,4 +61,5 @@ public class Invoice {
 		if (!(o instanceof Invoice invoice)) return false;
 		return totalRides == invoice.totalRides && Double.compare(invoice.totalFare, totalFare) == 0 && Double.compare(invoice.averageFare, averageFare) == 0;
 	}
+
 }
