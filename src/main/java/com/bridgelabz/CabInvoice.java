@@ -10,4 +10,12 @@ public class CabInvoice {
 		double fare = (distance * COST_PER_KILOMETER) + (time * COST_PER_MINUTE);
 		return (fare < MINIMUM_FARE) ? MINIMUM_FARE : fare;
 	}
+
+	public double calculateFare(Ride[] rides) {
+		double aggregateFare = 0;
+		for (Ride ride : rides) {
+			aggregateFare += calculateFare(ride.getDistance(), ride.getTime());
+		}
+		return aggregateFare;
+	}
 }
