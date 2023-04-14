@@ -6,20 +6,32 @@ import org.junit.jupiter.api.Test;
 
 	public class CabInvoiceTest {
 		CabInvoice cabInvoice;
+
 		@BeforeEach
-		public void init() {
+		public void init(){
 			cabInvoice = new CabInvoice();
 		}
 
 		@Test
-		public void givenDistanceAndTimeShouldReturnTotalFare() {
-			double fare = cabInvoice.calculateFare(20, 5);
-			Assertions.assertEquals(205, fare, 0.0);
+		public void givenDistanceAndTimeShouldReturnTotalFare(){
+			double fare = cabInvoice.calculateFare(20,5);
+			Assertions.assertEquals(205,fare,0.0);
 		}
 
 		@Test
-		public void givenDistanceAndTimeShouldReturnMinimumFare() {
-			double fare = cabInvoice.calculateFare(0.2, 1);
-			Assertions.assertEquals(5, fare, 0.0);
+		public void givenDistanceAndTimeShouldReturnMinimumFare(){
+			double fare = cabInvoice.calculateFare(0.2,1);
+			Assertions.assertEquals(5,fare,0.0);
+		}
+		//uc2
+		@Test
+		public void givenMultipleRidesShouldReturnAggregateFare(){
+			Ride ride1 = new Ride(20,5);
+			Ride ride2 = new Ride(0.2,1);
+			Ride ride3 = new Ride(0.5,2);
+			Ride ride4 = new Ride(10,5);
+			Ride[] rides = {ride1,ride2,ride3,ride4};
+			double aggregateFare = cabInvoice.calculateFare(rides);
+			Assertions.assertEquals(322,aggregateFare);
 		}
 	}
